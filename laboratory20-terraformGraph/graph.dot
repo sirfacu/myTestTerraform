@@ -1,0 +1,20 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_eip.lb (expand)" [label = "aws_eip.lb", shape = "box"]
+		"[root] aws_instance.myec2 (expand)" [label = "aws_instance.myec2", shape = "box"]
+		"[root] aws_security_group.allow_tls (expand)" [label = "aws_security_group.allow_tls", shape = "box"]
+		"[root] data.aws_ami.dataAmiId (expand)" [label = "data.aws_ami.dataAmiId", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.def-tags" [label = "var.def-tags", shape = "note"]
+		"[root] aws_eip.lb (expand)" -> "[root] aws_instance.myec2 (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] data.aws_ami.dataAmiId (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] var.def-tags"
+		"[root] aws_security_group.allow_tls (expand)" -> "[root] aws_eip.lb (expand)"
+		"[root] data.aws_ami.dataAmiId (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group.allow_tls (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
