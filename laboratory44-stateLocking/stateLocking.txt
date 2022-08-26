@@ -1,0 +1,21 @@
+whenever you are performing a write operation terraform lock the state file
+
+this is inportant thing because otherwise another person could try run another operation and corrupt the state file
+
+well, terraform provide a state lock file to avoid this behavior imagine that you are on a collabortion team and you're trying to 
+deploy new resources but someone is performing a destroy operation at same time the state lock file avoid to anohter person try to run another operationat the same time
+the state file doen't avoid the operation itself it just avoid a second person/pipeline perform another action meanwhile one task is running.
+
+the file called:
+
+.terraform.lock.hcl
+
+terraform also have another file .terraform.tfstate.lock.info where he notice that one or another operation is occurring, this file have and ID, user 
+who locked the file and other information it removed itself once the terraform operation finished
+
+if locking fails terraform will stopped
+
+have in mind that not all backend support locking
+
+terraform has a force-unlock command to manually unlock the state if unlocking failed on your local environment (also in collaborative), this is the unique situation where 
+this command should be use avoid to try unlock the lock file in a collaborative team
