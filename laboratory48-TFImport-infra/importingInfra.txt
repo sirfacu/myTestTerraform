@@ -1,0 +1,24 @@
+/* Sometimes we going to face up the challenge where within the company
+* don't use a IaC tool and all infrastructure has been created manually
+* so we need to improve this and bring into a IaC tool as terraform in this case
+* well terraform have the command import, (usage: terraform import) that let us
+* to manage the resources that was created manually for this we need to create
+* manually the resources and terraform will take care of populate the tfstate file.
+*
+* In this study case, I previously created manually a s3 buscket called  <terraform-import-buc>
+* and an EC2 instance called terraformImport and the idea is try out to import to our
+* project and manage from terraform instead of manually.
+*
+* we need to define the resources we want to populate and the id specific of the resource 
+* where the configuration should be read
+*
+* Ex. I create the resource aws_instance with name myImportEC2 and the instance have the 
+* id i-0ad3fa70fb92529dc
+*
+* So I need to run the command in this way:
+* <terraform import aws_instance.myImportEC2 i-0ad3fa70fb92529dc>
+*
+* Is important to understand that terraform import just is a useful command to fullfill the
+* tfstate file, it doesn't load configuration we hope in a future version TF let populate 
+* the configura too
+*/
