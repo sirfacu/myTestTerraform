@@ -20,5 +20,5 @@
 *
 * Is important to understand that terraform import just is a useful command to fullfill the
 * tfstate file, it doesn't load configuration we hope in a future version TF let populate 
-* the configura too
+* configuration too
 */

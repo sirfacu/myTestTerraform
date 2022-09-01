@@ -31,3 +31,4 @@ output "name" {
 output "combine" {
     value = zipmap(aws_iam_user.myusers[*].name,aws_iam_user.myusers[*].arn)
 }
+
