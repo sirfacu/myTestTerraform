@@ -1,0 +1,11 @@
+docker run --name ej3-wordpress -e WORDPRESS_DB_PASSWORD=123456789 --net ac-carrillo-docker-net -e WORDPRESS_DB_HOST=mariadb -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_NAME=wordpress -p 8180:80 -d wordpress:latest
+docker run --name ej3-wordpress -e WORDPRESS_DB_PASSWORD=123456789 --net ac-carrillo-docker-net -e WORDPRESS_DB_HOST=mariadb -e WORDPRESS_DB_USER=dbword -e WORDPRESS_DB_NAME=wordpress -p 8180:80 -d -v c:\volumenes-wordpress\mariabd:/var/www/html wordpress:latest
+
+#mariadb con volumen
+docker run --net ac-carrillo-docker-net --name mariadb -e MARIADB_USER=dbword -e MARIADB_PASSWORD=123456789 -e MARIADB_DATABASE=wordpress -e MARIADB_ROOT_PASSWORD=my-secret-pw -d -v /home/sirfacu/dockervs:/var/lib/mysql  mariadb:latest
+#correr instancia que se conecta a la mariadb
+docker run --net ac-carrillo-docker-net --name myphpadmin -d -e PMA_HOST=mariadb -p 8080:80 phpmyadmin:latest
+#wordpress
+docker run --name ej3-wordpress -e WORDPRESS_DB_PASSWORD=123456789 --net ac-carrillo-docker-net -e WORDPRESS_DB_HOST=mariadb -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_NAME=wordpress -p 8180:80 -d wordpress:latest
+#wordpress con volumen
+docker run --name ej3-wordpress -e WORDPRESS_DB_PASSWORD=123456789 --net ac-carrillo-docker-net -e WORDPRESS_DB_HOST=mariadb -e WORDPRESS_DB_USER=dbword -e WORDPRESS_DB_NAME=wordpress -p 8180:80 -d -v /home/sirfacu/dockervs/datawordpress:/var/www/html wordpress:latest
